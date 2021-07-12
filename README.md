@@ -1,6 +1,6 @@
 # To Do list: list structure
 
-![Alt text](images/screenshot.png?raw=true 'Screenshot')
+![Alt text](screenshot.png?raw=true 'Screenshot')
 
 ## Learning objectives
 
