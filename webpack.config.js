@@ -1,43 +1,43 @@
-const path = require("path");
-const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const ESLintPlugin = require("eslint-webpack-plugin");
-const WebpackLighthousePlugin = require("webpack-lighthouse-plugin");
+const path = require('path');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const WebpackLighthousePlugin = require('webpack-lighthouse-plugin');
 
 const options = {};
 module.exports = {
   entry: {
-    index: "./src/index.js",
+    index: './src/index.js',
   },
   devServer: {
-    contentBase: "./dist",
+    contentBase: './dist',
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: './src/index.html',
     }),
     new WebpackManifestPlugin(options),
     new ESLintPlugin(options),
     new WebpackLighthousePlugin({
-      url: "https://metsanpeitto.github.io/To-do-list_m2_w2/",
+      url: 'https://metsanpeitto.github.io/To-do-list_m2_w2/',
     }),
   ],
   output: {
-    filename: "[name].js",
-    path: path.resolve(__dirname, "dist"),
-    chunkFilename: "[id].[chunkhash].js",
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist'),
+    chunkFilename: '[id].[chunkhash].js',
     clean: true,
-    publicPath: "/",
+    publicPath: '/',
   },
   module: {
     rules: [
       {
         test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: "asset/resource",
+        type: 'asset/resource',
       },
     ],
   },
