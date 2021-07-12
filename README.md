@@ -24,10 +24,6 @@
 
 ## Getting Started
 
-If you want to visit the deployed app just visit the following link: 
-
-- [`https://metsanpeitto.github.io/To-do-list_m2_w2/`](https://metsanpeitto.github.io/To-do-list_m2_w2/)
-
 If you want a copy of this file go to the github repository and download it
 
 - [`git clone https://github.com/Metsanpeitto/To-do-list_m2_w2`](https://github.com/Metsanpeitto/To-do-list_m2_w2)
