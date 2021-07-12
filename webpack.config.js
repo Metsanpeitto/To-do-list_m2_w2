@@ -30,7 +30,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     /* eslint-disable */
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
 };
