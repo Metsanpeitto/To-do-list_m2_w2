@@ -1,6 +1,7 @@
 const path = require('path');
 const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackLighthousePlugin = require('webpack-lighthouse-plugin');
 
 const options = {};
 module.exports = {
@@ -15,6 +16,9 @@ module.exports = {
       template: './src/index.html',
     }),
     new WebpackManifestPlugin(options),
+    new WebpackLighthousePlugin({
+      url: 'http://localhost:9001',
+    }),
   ],
   output: {
     filename: '[name].js',
