@@ -2,6 +2,7 @@ const path = require("path");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const WebpackLighthousePlugin = require("webpack-lighthouse-plugin");
 
 const options = {};
 module.exports = {
@@ -17,6 +18,9 @@ module.exports = {
     }),
     new WebpackManifestPlugin(options),
     new ESLintPlugin(options),
+    new WebpackLighthousePlugin({
+      url: "https://metsanpeitto.github.io/To-do-list_m2_w2/",
+    }),
   ],
   output: {
     filename: "[name].js",
