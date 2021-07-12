@@ -17,7 +17,7 @@ module.exports = {
     }),
     new WebpackManifestPlugin(options),
     new WebpackLighthousePlugin({
-      url: 'http://localhost:9001',
+      url: 'http://localhost:3000',
     }),
   ],
   output: {
