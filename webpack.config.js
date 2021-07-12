@@ -36,6 +36,17 @@ module.exports = {
         type: 'asset/resource',
       },
     ],
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+      },
+    ],
+    resolve: {
+      root: path.resolve(__dirname, 'src'),
+      extensions: ['', '.js', '.jsx'],
+    },
   },
   mode: 'development',
 };
