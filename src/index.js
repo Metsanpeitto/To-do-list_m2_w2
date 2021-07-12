@@ -1,14 +1,16 @@
-import _ from "lodash";
-import "./style.css";
-import RecycleImg from "./recycle.svg";
-import MoreImg from "./more.svg";
+import './style.css';
+import RecycleImg from './recycle.svg';
+import MoreImg from './more.svg';
+import TrashImg from './delete.svg';
 
 let tasks = null;
 
 /**       AddTask adds tasks to the tasks list      */
 window.addTask = function addTask() {
-  console.log("task adding");
-  const description = document.getElementById("description").value;
+  const str = document.getElementById('description').value;
+  const firstLetter = str.charAt(0).toUpperCase();
+  str.replace(str.charAt(0), firstLetter);
+  const description = str;
   const completed = false;
   const date = new Date();
   const id = date.getMilliseconds();
@@ -19,15 +21,13 @@ window.addTask = function addTask() {
 
   const position = tasks.length + 1;
 
-  if (tasks && description !== "") {
+  if (tasks && description !== '') {
     const task = {
       description,
       completed,
       position,
       id,
     };
-    console.log("add task");
-    console.log(task);
     tasks.push(task);
     tasks.sort((taskA, taskB) => {
       const indexA = taskA.position;
@@ -42,9 +42,24 @@ window.addTask = function addTask() {
     });
 
     window.updateLocalStorage(false);
-    // const frm = document.getElementById("task-form");
-    // frm.reset(); // Reset all form data
   }
+};
+
+window.editTask = function editTask(data) {
+  const list = document.getElementsByTagName('li');
+
+  Array.from(list).forEach((li) => {
+    if (li.id === data.id) {
+      li.style.backgroundColor = '#fff59c78';
+      const img = li.getElementsByTagName('img')[0];
+
+      img.src = TrashImg;
+    } else {
+      li.style.backgroundColor = 'white';
+      const img = li.getElementsByTagName('img')[0];
+      img.src = MoreImg;
+    }
+  });
 };
 
 window.removeTask = function removetask(data) {
@@ -72,55 +87,51 @@ window.clear = function clear() {
     }
   });
   tasks = temp;
-  updateLocalStorage(true);
+  window.updateLocalStorage(true);
 };
 
 window.markcompleted = function markcompleted(id) {
-  console.log("Mark completed");
-  console.log(id);
   tasks.find((task) => task.id === id).completed = true;
-  console.log(tasks);
 };
 
 /**       UpdateLocalStorage saves and retrieves from local storage       */
 window.updateLocalStorage = function updateLocalStorage(remove) {
   if (remove !== true) {
     if (tasks === null) {
-      tasks = JSON.parse(window.localStorage.getItem("tasks"));
-      console.log("Get local storage");
-      console.log(tasks);
+      tasks = JSON.parse(window.localStorage.getItem('tasks'));
     }
   }
 
-  window.localStorage.setItem("tasks", JSON.stringify(tasks));
-  console.log("local storage: ");
-  console.log(tasks);
-  displayTasks();
+  window.localStorage.setItem('tasks', JSON.stringify(tasks));
+  window.displayTasks();
 };
 
 /**       Display tasks is used to show the Task collection      */
-function displayTasks() {
-  const container = document.getElementById("container");
-  const list = document.createElement("ul");
-  const EnterImg = "&#8629";
+window.displayTasks = function displayTasks() {
+  const container = document.getElementById('container');
+  const list = document.createElement('ul');
+  const EnterImg = '&#8629';
   if (tasks) {
-    list.id = "list";
-    console.log(list);
-
+    list.id = 'list';
     tasks.forEach((task, index) => {
-      const { description, id, completed } = task;
+      const { description, id } = task;
       const liId = `li${index}`;
-      const taskCard = `<li id=${liId} >
+      const taskCard = `<li id=${liId} onclick="window.editTask(${liId})" >
               <div class="task"> 
-                 <input  type="checkbox" name=${id}   id=${id} />   
-                 <h6 class="description">${description}</h6> 
-                 <button class="refresh-btn" id="refresh-btn" type="button"> 
+                 <input  type="checkbox" name=${id}   id=${id} />               
+                     <input
+                      id="li-description-${id}"
+                      type="text"
+                      class="description"
+                      placeholder=${description}
+                    />
+                 <button class="edit-btn" id="edit-btn-${id}" type="button"> 
                   <img class="add-btn-img" src=${MoreImg} alt="" /> 
                  </button>
                 </div>             
               </div>
              </li>`;
-      list.insertAdjacentHTML("beforeend", taskCard);
+      list.insertAdjacentHTML('beforeend', taskCard);
     });
   }
 
@@ -147,54 +158,15 @@ function displayTasks() {
           `;
 
   container.innerHTML = template;
-  const buttonHtml = document.createElement("button");
+  const buttonHtml = document.createElement('button');
   /// `<button id="clear-btn" class="clear-btn" onclick="window.clear()"></button>`;
-  buttonHtml.id = "clear-btn";
-  buttonHtml.classList.add("clear-btn");
-  buttonHtml.onclick = "window.clear()";
-  buttonHtml.textContent = "Clear completed tasks.";
-  container.insertAdjacentElement("beforeend", list);
-  container.insertAdjacentElement("beforeend", buttonHtml);
-  console.log(container);
-}
+  buttonHtml.id = 'clear-btn';
+  buttonHtml.classList.add('clear-btn');
+  buttonHtml.onclick = 'window.clear()';
+  buttonHtml.textContent = 'Clear completed tasks.';
+  container.insertAdjacentElement('beforeend', list);
+  container.insertAdjacentElement('beforeend', buttonHtml);
+};
 
-// This first function ensures that the document has being already created
-document.addEventListener("DOMContentLoaded", () => {
-  // const addBtn = document.getElementById("add-btn");
-  // addBtn.addEventListener("click", addtask(), false);
-  // console.log(addBtn);
-});
-
-updateLocalStorage();
-displayTasks();
-
-/**
- *
- *     <div class="task">
-                <input type="checkbox" checked=${completed} name="check" id=${id} onclick="toDoList.markcompleted(${id})" />
-                <h6>${description}</h6>
-                    <button id="move${id}" onclick="toDoList.moveTask(${id})">
-                    <div class="dots">
-                     <div class="dot"></div>
-                     <div class="dot"></div>
-                     <div class="dot"></div>
-                    </div>
-                   </button>
-              </div>
-             </li>
-
-                 const template = `
-       <h1>Today's To Do</h1>
-          <form id="task-form">
-            <input
-              id="description"
-              type="text"
-              class="text"
-              placeholder="Add to your list ..."
-            />
-            <button id="add-btn" type="submit" onclick="toDoList.addTask()"><div class="circle"></div></button>
-          </form>
-
-        <button id="clearBtn" onclick="toDoList.clear()" >Clear all completed tasks.</button>`;
-
- */
+window.updateLocalStorage();
+window.displayTasks();

@@ -2,7 +2,10 @@ body {
   background-color: white;
 }
 
-h1, h3, h6, p {
+h1,
+h3,
+h6,
+p {
   margin: unset;
 }
 
@@ -20,6 +23,9 @@ button {
   justify-items: stretch;
   display: grid;
   grid-template-rows: 36px 36px auto 36px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
 }
 
 .top {
@@ -55,11 +61,21 @@ button {
   padding-left: 12px;
 }
 
+.text::first-letter {
+  text-transform: capitalize !important;
+}
+
+input:focus-visible {
+  border: unset;
+  outline: unset;
+}
+
 ul {
   grid-row-start: 3;
   margin: unset;
   padding: unset;
   background-color: white;
+  list-style-type: none;
 }
 
 li {
@@ -79,6 +95,8 @@ li {
   font-weight: 200;
   font-size: 12px;
   letter-spacing: 1px;
+  border: unset;
+  background: transparent;
 }
 
 .circle {
