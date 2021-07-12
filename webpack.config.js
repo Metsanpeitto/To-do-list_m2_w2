@@ -10,7 +10,7 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    contentBase: './',
+    contentBase: './dist',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -24,6 +24,7 @@ module.exports = {
     /* eslint-disable */
     path: path.resolve(__dirname, "dist"),
     clean: true,
+    /* eslint-disable */
     publicPath: "/",
   },
   module: {
