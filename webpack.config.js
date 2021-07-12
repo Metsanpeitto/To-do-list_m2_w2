@@ -21,32 +21,22 @@ module.exports = {
   ],
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist'),
+    /* eslint-disable */
+    path: path.resolve(__dirname, "dist"),
     clean: true,
-    publicPath: '/',
+    publicPath: "/",
   },
   module: {
     rules: [
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
       },
     ],
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel',
-      },
-    ],
-    resolve: {
-      root: path.resolve(__dirname, 'src'),
-      extensions: ['', '.js', '.jsx'],
-    },
   },
-  mode: 'development',
+  mode: "development",
 };
