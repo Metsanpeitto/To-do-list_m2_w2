@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/Metsanpeitto/webpack_m2-w2/issues"
   },
-  "homepage": "https://metsanpeitto.github.io/To-do-list_m2_w2/",
+  "homepage": "https://metsanpeitto.github.io/To-do-list_m2_w2#readme",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "css-loader": "^5.2.6",
