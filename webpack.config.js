@@ -1,36 +1,38 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
+const options = {};
 module.exports = {
-  mode: 'development',
-  entry: './src/index.js',
-  devtool: 'inline-source-map',
+  entry: {
+    index: "./src/index.js",
+  },
   devServer: {
-    contentBase: '/.dist',
+    contentBase: "./dist",
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Wbpack Exercise',
-      filename: 'index.html',
-      template: './src/index.html',
+      template: "./src/index.html",
     }),
+    new WebpackManifestPlugin(options),
   ],
+  output: {
+    filename: "[name].js",
+    path: path.resolve(__dirname, "dist"),
+    chunkFilename: "[id].[chunkhash].js",
+    clean: true,
+    publicPath: "/",
+  },
   module: {
     rules: [
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        type: "asset/resource",
       },
     ],
-  },
-  output: {
-    filename: 'bundle.js',
-    /* eslint-disable */
-    path: path.resolve(__dirname, 'dist'),
-    clean: true,
   },
 };
