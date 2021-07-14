@@ -2,8 +2,29 @@ import './style.css';
 import RecycleImg from './recycle.svg';
 import MoreImg from './more.svg';
 import TrashImg from './delete.svg';
+import { drag, drop, allowDrop } from './drag_drop.js';
+import updateTasks from './status.js';
 
 let tasks = null;
+
+/**       Saves and retrieves from local storage       */
+window.updateLocalStorage = function updateLocalStorage(retrieve) {
+  if (retrieve === true) {
+    if (tasks === null) {
+      tasks = JSON.parse(window.localStorage.getItem('tasks'));
+    }
+  } else {
+    window.localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+  window.displayTasks();
+};
+
+/**       Update the state of the tasks            */
+window.update = function update() {
+  const response = updateTasks();
+  tasks = response;
+  window.updateLocalStorage(false);
+};
 
 /**       AddTask adds tasks to the tasks list      */
 window.addTask = function addTask() {
@@ -19,13 +40,13 @@ window.addTask = function addTask() {
     tasks = [];
   }
 
-  const position = tasks.length + 1;
+  const index = tasks.length + 1;
 
   if (tasks && description !== '') {
     const task = {
       description,
       completed,
-      position,
+      index,
       id,
     };
     tasks.push(task);
@@ -45,14 +66,12 @@ window.addTask = function addTask() {
   }
 };
 
-window.editTask = function editTask(data) {
-  const list = document.getElementsByTagName('li');
-
+window.editTask = function editTask(divId) {
+  const list = document.getElementsByClassName('drag-div');
   Array.from(list).forEach((li) => {
-    if (li.id === data.id) {
+    if (li.id === divId) {
       li.style.backgroundColor = '#fff59c78';
       const img = li.getElementsByTagName('img')[0];
-
       img.src = TrashImg;
     } else {
       li.style.backgroundColor = 'white';
@@ -60,23 +79,6 @@ window.editTask = function editTask(data) {
       img.src = MoreImg;
     }
   });
-};
-
-window.removeTask = function removetask(data) {
-  let id;
-  if (!data.id) {
-    id = data;
-  } else {
-    id = data.id;
-  }
-  const temp = [];
-  tasks.forEach((task) => {
-    if (task.id !== id) {
-      temp.push(task);
-    }
-  });
-  tasks = temp;
-  window.updateLocalStorage(true);
 };
 
 window.clear = function clear() {
@@ -87,51 +89,81 @@ window.clear = function clear() {
     }
   });
   tasks = temp;
-  window.updateLocalStorage(true);
-};
-
-window.markcompleted = function markcompleted(id) {
-  tasks.find((task) => task.id === id).completed = true;
-};
-
-/**       UpdateLocalStorage saves and retrieves from local storage       */
-window.updateLocalStorage = function updateLocalStorage(remove) {
-  if (remove !== true) {
-    if (tasks === null) {
-      tasks = JSON.parse(window.localStorage.getItem('tasks'));
-    }
-  }
-
-  window.localStorage.setItem('tasks', JSON.stringify(tasks));
-  window.displayTasks();
+  window.updateLocalStorage(false);
 };
 
 /**       Display tasks is used to show the Task collection      */
 window.displayTasks = function displayTasks() {
   const container = document.getElementById('container');
   const list = document.createElement('ul');
+  list.id = 'list';
   const EnterImg = '&#8629';
+
   if (tasks) {
-    list.id = 'list';
     tasks.forEach((task, index) => {
       const { description, id } = task;
-      const liId = `li${index}`;
-      const taskCard = `<li id=${liId} onclick="window.editTask(${liId})" >
-              <div class="task"> 
-                 <input  type="checkbox" name=${id}   id=${id} />               
-                     <input
-                      id="li-description-${id}"
-                      type="text"
-                      class="description"
-                      placeholder=${description}
-                    />
-                 <button class="edit-btn" id="edit-btn-${id}" type="button"> 
-                  <img class="add-btn-img" src=${MoreImg} alt="" /> 
-                 </button>
-                </div>             
-              </div>
-             </li>`;
-      list.insertAdjacentHTML('beforeend', taskCard);
+      // const taskCard = `<li id=${liId} onclick="window.editTask(${liId})" draggable="true" >
+      const li = document.createElement('li');
+      li.id = index;
+      li.addEventListener('drop', (EventTarget) => {
+        li.classList.remove('dragging');
+        drop(EventTarget);
+      });
+
+      li.addEventListener('dragover', (EventTarget) => {
+        allowDrop(EventTarget);
+      });
+
+      const div = document.createElement('div');
+      const divId = `div${task.index}`;
+
+      div.classList.add('task');
+      div.id = divId;
+      div.classList.add('drag-div');
+      div.draggable = true;
+      div.addEventListener('click', () => window.editTask(divId));
+      div.data = index;
+      div.addEventListener('dragstart', (EventTarget) => {
+        div.classList.add('dragging');
+        drag(EventTarget);
+      });
+
+      const inputCheckbox = document.createElement('input');
+      inputCheckbox.addEventListener('click', () => {
+        window.update();
+      });
+      inputCheckbox.type = 'checkbox';
+      inputCheckbox.name = task.id;
+      inputCheckbox.id = `input-check-${id}`;
+      inputCheckbox.checked = task.completed;
+
+      const inputTask = document.createElement('input');
+      inputTask.id = `li-description-${id}`;
+      inputTask.type = 'text';
+      inputTask.classList.add('description');
+      inputTask.placeholder = description;
+      inputTask.value = description || null;
+      inputTask.data = task.index;
+      inputTask.addEventListener('change', () => {
+        window.update();
+      });
+
+      const button = document.createElement('button');
+      button.classList.add('edit-btn');
+      button.id = `edit-btn-${id}`;
+      button.type = 'button';
+
+      const img = document.createElement('img');
+      img.src = MoreImg;
+      img.alt = 'image';
+      img.classList.add('add-btn-img');
+
+      button.appendChild(img);
+      div.appendChild(inputCheckbox);
+      div.appendChild(inputTask);
+      div.appendChild(button);
+      li.appendChild(div);
+      list.appendChild(li);
     });
   }
 
@@ -159,7 +191,6 @@ window.displayTasks = function displayTasks() {
 
   container.innerHTML = template;
   const buttonHtml = document.createElement('button');
-  /// `<button id="clear-btn" class="clear-btn" onclick="window.clear()"></button>`;
   buttonHtml.id = 'clear-btn';
   buttonHtml.classList.add('clear-btn');
   buttonHtml.onclick = 'window.clear()';
@@ -168,5 +199,5 @@ window.displayTasks = function displayTasks() {
   container.insertAdjacentElement('beforeend', buttonHtml);
 };
 
-window.updateLocalStorage();
+window.updateLocalStorage(true);
 window.displayTasks();

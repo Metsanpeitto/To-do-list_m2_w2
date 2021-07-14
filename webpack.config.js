@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const options = {};
 module.exports = {
+  mode: 'production',
   entry: {
     index: './src/index.js',
   },
@@ -17,11 +18,10 @@ module.exports = {
     new WebpackManifestPlugin(options),
   ],
   output: {
-    filename: '[name].js',
+    filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
     chunkFilename: '[id].[chunkhash].js',
     clean: true,
-    publicPath: '/',
   },
   module: {
     rules: [
