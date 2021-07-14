@@ -1,4 +1,4 @@
-# To Do list: list structure
+# To Do list: interactive list
 
 ![Alt text](screenshot.png?raw=true 'Screenshot')
 
