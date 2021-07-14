@@ -8,7 +8,7 @@ function updateTasks() {
       const div = li.getElementsByTagName('div')[0];
       const completed = div.getElementsByTagName('input')[0].checked;
       const id = div.getElementsByTagName('input')[0].name;
-      const description = div.getElementsByTagName('input')[1].placeholder;
+      const description = div.getElementsByTagName('input')[1].value;
 
       const task = {
         completed,

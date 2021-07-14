@@ -2,10 +2,7 @@ body {
   background-color: white;
 }
 
-h1,
-h3,
-h6,
-p {
+h1, h3, h6, p {
   margin: unset;
 }
 
@@ -112,6 +109,11 @@ li {
 .add-btn-img {
   width: 14px;
   opacity: 0.3;
+  user-select: unset;
+}
+
+.edit-btn {
+  cursor: all-scroll;
 }
 
 .refresh-btn {
@@ -120,4 +122,9 @@ li {
 
 .clear-btn {
   color: rgba(165, 165, 165, 0.76);
+}
+
+.dragging {
+  opacity: 0.2;
+  cursor: all-scroll;
 }

@@ -1,5 +1,7 @@
 # To Do list: interactive list
 
+![Microverse](https://img.shields.io/badge/Microverse-blueviolet)
+
 ![Alt text](screenshot.png?raw=true 'Screenshot')
 
 ## Learning objectives
@@ -19,16 +21,30 @@
 
 ## Getting Started
 
-If you want a copy of this file go to the github repository and download it
+If you want a copy of this file go to the github repository and download it from there
 
 - [`git clone https://github.com/Metsanpeitto/To-do-list_m2_w2`](https://github.com/Metsanpeitto/To-do-list_m2_w2)
 
 
-After cloning it and uncrompressing it into a folder, go to terminal and from the same
-directory run the command npm install to download the needed libraries.
+### Setup
 
-Then type npm run server and a open a browser and in the browser 
-and type https://localhost:3000 
+```cmd
+git clone  https://github.com/Metsanpeitto/To-do-list_m2_w2.git
+cd ./To-do-list_m2_w2
+```
+
+### Install
+
+```cmd
+npm install
+```
+
+### Usage
+
+```cmd
+npm start
+```
+
 
 If you are non a technical person you can download the zip file.
 

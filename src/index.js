@@ -23,6 +23,7 @@ window.updateLocalStorage = function updateLocalStorage(retrieve) {
 window.update = function update() {
   const response = updateTasks();
   tasks = response;
+  window.updateLocalStorage(false);
 };
 
 /**       AddTask adds tasks to the tasks list      */
@@ -65,10 +66,10 @@ window.addTask = function addTask() {
   }
 };
 
-function editTask(e) {
+window.editTask = function editTask(divId) {
   const list = document.getElementsByClassName('drag-div');
   Array.from(list).forEach((li) => {
-    if (li.id === e.currentTarget.id) {
+    if (li.id === divId) {
       li.style.backgroundColor = '#fff59c78';
       const img = li.getElementsByTagName('img')[0];
       img.src = TrashImg;
@@ -78,8 +79,7 @@ function editTask(e) {
       img.src = MoreImg;
     }
   });
-  window.updateLocalStorage(false);
-}
+};
 
 window.clear = function clear() {
   const temp = [];
@@ -116,11 +116,12 @@ window.displayTasks = function displayTasks() {
 
       const div = document.createElement('div');
       const divId = `div${task.index}`;
+
       div.classList.add('task');
       div.id = divId;
       div.classList.add('drag-div');
       div.draggable = true;
-      div.addEventListener('click', (divId) => editTask(divId));
+      div.addEventListener('click', () => window.editTask(divId));
       div.data = index;
       div.addEventListener('dragstart', (EventTarget) => {
         div.classList.add('dragging');
@@ -141,7 +142,11 @@ window.displayTasks = function displayTasks() {
       inputTask.type = 'text';
       inputTask.classList.add('description');
       inputTask.placeholder = description;
+      inputTask.value = description || null;
       inputTask.data = task.index;
+      inputTask.addEventListener('change', () => {
+        window.update();
+      });
 
       const button = document.createElement('button');
       button.classList.add('edit-btn');
