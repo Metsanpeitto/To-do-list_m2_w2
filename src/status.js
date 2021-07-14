@@ -3,6 +3,7 @@
 function updateTasks() {
   const list = document.getElementsByTagName('li');
   const tempTasks = [];
+
   if (list.length !== 0) {
     Array.from(list).forEach((li, index) => {
       const div = li.getElementsByTagName('div')[0];
@@ -19,6 +20,7 @@ function updateTasks() {
       tempTasks.push(task);
     });
   }
+
   return tempTasks;
 }
 

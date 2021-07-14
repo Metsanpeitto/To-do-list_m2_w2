@@ -112,7 +112,6 @@ li {
 .add-btn-img {
   width: 14px;
   opacity: 0.3;
-  user-select: unset;
 }
 
 .edit-btn {
@@ -121,10 +120,6 @@ li {
 
 .refresh-btn {
   text-align: end;
-}
-
-.clear-btn {
-  color: rgba(165, 165, 165, 0.76);
 }
 
 .dragging {
