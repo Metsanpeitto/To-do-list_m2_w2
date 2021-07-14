@@ -24,6 +24,12 @@ window.callAddTask = function callAddTask() {
   addTask(tasks);
 };
 
+/**       Handler for calling a task from and inline declared listener */
+window.restart = function restart() {
+  tasks = null;
+  window.updateLocalStorage(false);
+};
+
 /**       Update the state of the tasks            */
 window.update = function update(data) {
   if (!data) {
@@ -113,6 +119,7 @@ window.displayTasks = function displayTasks() {
   <div class="top">
   <h1 class="title">Today's To Do</h1>
            <button id="refresh-btn" type="button" 
+            onclick="window.restart()"
             type="button"> 
             <img class="add-btn-img" src=${RecycleImg} alt="" /> 
             </button>
