@@ -1,4 +1,4 @@
-# To Do list: interactive list
+# To Do list: add & remove
 
 ![Microverse](https://img.shields.io/badge/Microverse-blueviolet)
 
@@ -9,6 +9,17 @@
 - Use webpack to bundle JavaScript.
 - Learn how to use proper ES6 syntax.
 - Use ES6 modules to write modular JavaScript.
+
+### Project requirements
+- Remove all hardcoded items from the tasks array.
+- Create a new JavaScript file for the new functionality.
+- Implement a function for adding a new task (add a new element to the array).
+- Implement a function for editing task descriptions.
+- Implement a function for deleting a task (remove an element from the array).
+- Implement a function for the "Clear all completed" button (use `filter()` method).
+- By default new tasks should have the property `completed` set to `false` and the property `index` set to the value of the new array length (i.e. if you're adding a 5th task to the list, the index of that task should equal to 5).
+- Deleting a task should update all remaining items' indexes, so they represent the current list order and are unique.
+- All changes to the To Do List should be saved in local storage.
 
 =======
 
