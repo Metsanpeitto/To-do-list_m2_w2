@@ -1,4 +1,4 @@
-# To Do list: add & remove
+# To Do list: secure deploy
 
 ![Microverse](https://img.shields.io/badge/Microverse-blueviolet)
 
@@ -6,20 +6,16 @@
 
 ## Learning objectives
 
-- Use webpack to bundle JavaScript.
-- Learn how to use proper ES6 syntax.
-- Use ES6 modules to write modular JavaScript.
+- Deploy a secure website using OpenSSL.
 
 ### Project requirements
-- Remove all hardcoded items from the tasks array.
-- Create a new JavaScript file for the new functionality.
-- Implement a function for adding a new task (add a new element to the array).
-- Implement a function for editing task descriptions.
-- Implement a function for deleting a task (remove an element from the array).
-- Implement a function for the "Clear all completed" button (use `filter()` method).
-- By default new tasks should have the property `completed` set to `false` and the property `index` set to the value of the new array length (i.e. if you're adding a 5th task to the list, the index of that task should equal to 5).
-- Deleting a task should update all remaining items' indexes, so they represent the current list order and are unique.
-- All changes to the To Do List should be saved in local storage.
+- Commit and push all your work into the project's GitHub repository.
+- If you worked with branches, make sure you merge all your work into the main branch.
+- Deploy your website using GitHub Pages (you are already familiar with this process), but this time pay attention to the extra step that will ensure that your app uses HTTPS protocol:
+- Scroll to the bottom of the Pages page and make sure the "Enforce HTTPS" checkbox is selected.
+- Confirm the deployment. Your application will be live in few minutes. On the top of the Pages page you will find your project's URL.
+- Make sure that your app URL uses SSL.
+- Update the README of your repository to include a link to the online version.
 
 =======
 
@@ -35,6 +31,11 @@
 If you want a copy of this file go to the github repository and download it from there
 
 - [`git clone https://github.com/Metsanpeitto/To-do-list_m2_w2`](https://github.com/Metsanpeitto/To-do-list_m2_w2)
+
+
+### Live
+
+[Live](https://metsanpeitto.github.io/To-do-list_m2_w2/)
 
 
 ### Setup
