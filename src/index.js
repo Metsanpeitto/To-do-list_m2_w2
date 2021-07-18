@@ -141,6 +141,7 @@ function main() {
 
     container.innerHTML = template;
     const buttonHtml = document.createElement("button");
+
     buttonHtml.id = "clear-btn";
     buttonHtml.addEventListener("click", () => {
       clear(tasks);
