@@ -1,7 +1,8 @@
 import { fireEvent, getByText } from "@testing-library/dom";
 import "@testing-library/jest-dom/extend-expect";
 import "regenerator-runtime/runtime";
-import { displayTasks, updateLocalStorage } from "./test_files/index";
+import { displayTasks, update } from "./test_files/index";
+import { drag, drop } from "./test_files/drag_drop";
 
 const fs = require("fs");
 var jsdom = require("jsdom");
@@ -31,14 +32,50 @@ describe("Functions for testing checkbox inputs", () => {
   const checkInputs = global.document.getElementsByTagName("input");
   Array.from(checkInputs).forEach((checkInput) => {
     if (checkInput.type === "checkbox") {
-      test("renders all the Input Checkbox element", () => {
+      test("renders all the input checkbox element", () => {
         expect(checkInput).not.toBeNull();
       });
-      test("tests all Input Checkbox element ", async () => {
+      test("tests all input checkbox element ", async () => {
         const oldState = checkInput.checked;
         fireEvent.click(checkInput);
         expect(checkInput.checked).not.toBe(oldState);
       });
     }
+  });
+});
+
+describe("Functions for testing drag and drop events", () => {
+  const list = global.document.getElementsByTagName("li");
+  Array.from(list).forEach((li) => {
+    test("renders the list elements", () => {
+      expect(li).not.toBeNull();
+    });
+  });
+  const li = list[0];
+  test("drags and drops the element 1 position up (index - 1) ", async () => {
+    const oldIndex = li.id;
+    const divIdOld = li.getElementsByTagName("div")[0].id;
+    if (li.previousSibling) {
+      console.log(li.getElementsByTagName("div")[0].id);
+      console.log(li.previousSibling.getElementsByTagName("div")[0].id);
+    }
+    drag();
+    let newIndex;
+
+    if (oldIndex === "0") {
+      newIndex = "1";
+    }
+    if (oldIndex === "1") {
+      newIndex = "0";
+    }
+    drop(oldIndex, newIndex);
+    setTimeout(500, () => {
+      const divIdNew = li.getElementsByTagName("div")[0].id;
+      if (li.previousSibling) {
+        console.log(li.getElementsByTagName("div")[0].id);
+        console.log(li.previousSibling.getElementsByTagName("div")[0].id);
+      }
+      expect(divIdOld).not.toBe(divIdNew);
+    });
   });
 });

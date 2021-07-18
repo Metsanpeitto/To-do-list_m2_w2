@@ -10,7 +10,7 @@
     ]
   },
   "scripts": {
-    "test": "jest --watchAll",
+    "test": "jest --coverage",
     "start": "webpack serve --open",
     "server": "node server.js",
     "build": "webpack",

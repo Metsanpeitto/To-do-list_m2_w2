@@ -1,5 +1,7 @@
-import updateTasks from "./status";
+import { updateTasks } from "./status";
 import { addTask, removeTask, editTask } from "./add_remove";
+import { allowDrop, drag, drop } from "../../../src/drag_drop";
+
 import { storageMock } from "./storageMock";
 const fs = require("fs");
 var jsdom = require("jsdom");
@@ -13,8 +15,8 @@ window.localStorage = storageMock();
 window.sessionStorage = storageMock();
 /**    The code from index starts here       */
 let tasks = [
-  { id: 2, index: 2, description: "Do things", completed: true },
-  { id: 3, index: 3, description: "Do more things", completed: false },
+  { id: 0, index: 0, description: "Do things", completed: true },
+  { id: 1, index: 1, description: "Do more things", completed: false },
 ];
 
 /**       Saves and retrieves from local storage       */
@@ -157,7 +159,7 @@ window.displayTasks = function displayTasks() {
 window.updateLocalStorage(true);
 window.displayTasks();
 
-module.exports = { displayTasks, updateLocalStorage };
+module.exports = { displayTasks, update };
 //    a function for editing the task description.
 
 //describe("Test task manager ->", () => {

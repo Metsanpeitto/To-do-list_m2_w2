@@ -18,8 +18,7 @@ function updateTasks() {
       tempTasks.push(task);
     });
   }
-
   return tempTasks;
 }
 
-export default updateTasks;
+module.exports = { updateTasks };
