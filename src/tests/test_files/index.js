@@ -1,13 +1,16 @@
-import "jest-localstorage-mock";
 import updateTasks from "./status";
 import { addTask, removeTask } from "./add_remove";
-
+import { storageMock } from "./storageMock";
 const fs = require("fs");
 var jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
 window.document.body.innerHTML = fs.readFileSync("src/index.html");
 
+// mock the localStorage
+window.localStorage = storageMock();
+// mock the sessionStorage
+window.sessionStorage = storageMock();
 /**    The code from index starts here       */
 let tasks = [
   { id: 2, index: 2, description: "Do things", completed: true },
@@ -176,29 +179,5 @@ describe("Test task manager ->", () => {
     const lenA = listAfter.length;
 
     expect(lenB - 1).toBe(lenA);
-  });
-});
-
-describe("Test Local Storage ->", () => {
-  test("should save to localStorage", () => {
-    tasks = JSON.parse(window.localStorage.getItem("tasks"));
-    const KEY = "tasks",
-      VALUE = tasks;
-    expect(window.localStorage.getItem).toHaveBeenLastCalledWith(KEY);
-    expect(window.localStorage.__STORE__[KEY]).toBe(JSON.stringify(VALUE));
-    expect(Object.keys(window.localStorage.__STORE__).length).toBe(1);
-  });
-
-  test("should retrieve to localStorage", () => {
-    const KEY = "tasks";
-    const VALUE = tasks;
-
-    window.localStorage.setItem("tasks", JSON.stringify(tasks));
-    expect(window.localStorage.setItem).toHaveBeenLastCalledWith(
-      KEY,
-      JSON.stringify(VALUE)
-    );
-    expect(window.localStorage.__STORE__[KEY]).toBe(JSON.stringify(VALUE));
-    expect(Object.keys(window.localStorage.__STORE__).length).toBe(1);
   });
 });

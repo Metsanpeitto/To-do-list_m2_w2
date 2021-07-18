@@ -1,4 +1,4 @@
-# Testing To Do list: part 1
+# Testing To Do list: part 2
 
 ![Microverse](https://img.shields.io/badge/Microverse-blueviolet)
 
@@ -6,15 +6,17 @@
 
 ## Learning objectives
 
-- Write unit tests for a JavaScript app.
-.
+- Write units tests for a JavaScript app.
+
 
 ### Project requirements
-- This is a pair-programming project. Please decide whose project will you use for testing.
-- Create a test file (`[..].test.js`) for a file containing the **add item** and **delete item**  functions that you want to test.
-- Take a look at each of these functions. Are they *pure functions*? If the answer is "yes" then writing tests for them should be straightforward. Some of those functions however will update *localStorage* and manipulate the *DOM*. For those, you will need to use mocks:
-  - Mock a storage object to "imitate" localStorage operations.
-  - Mock HTML to test if add/delete functions add or remove exactly one `<li>` element to/from the list in the DOM.
+- Create a test file(s) (`[..].test.js`) for a file(s) containing the following functions:
+    - a function for editing the task description.
+    - a function for updating an item's 'completed' status.
+    - a function for updating an item's index value upon drag/drop actions.
+    - the "Clear all completed" function.
+- Use the mock storage object you have created in Part 1 of this project to mock the *localStorage* updates.
+- Mock the HTML elements to test DOM manipulation functions.
 - Make sure you group your tests using the `description()` method.
 -  **You need to use pair-programming for this project. We will check to see if both partners submitted code by looking at the commit history for each project.  Therefore you need to select one of the repos in your pair-programming group in which you will implement the above features.**
 
