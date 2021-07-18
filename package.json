@@ -64,6 +64,7 @@
     "jest": "^27.0.6",
     "jsdom": "^16.6.0",
     "lodash": "^4.17.21",
+    "regenerator-runtime": "^0.13.7",
     "style-loader": "^3.1.0"
   },
   "main": "server.js"
