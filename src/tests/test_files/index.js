@@ -1,5 +1,5 @@
 import { updateTasks } from "./status";
-import { addTask, removeTask, editTask } from "./add_remove";
+import { addTask, removeTask, editTask, clear } from "./add_remove";
 import { allowDrop, drag, drop } from "../../../src/drag_drop";
 
 import { storageMock } from "./storageMock";
@@ -159,31 +159,4 @@ window.displayTasks = function displayTasks() {
 window.updateLocalStorage(true);
 window.displayTasks();
 
-module.exports = { displayTasks, update };
-//    a function for editing the task description.
-
-//describe("Test task manager ->", () => {
-//  test("add 1 li element to the ul", () => {
-//    const input = window.document.getElementById("description");
-//    input.value = "Do stuff";
-//    const task = { id: 4, index: 4, description: "Do stuff", completed: true };
-
-//    const listBefore = window.document.getElementsByTagName("li");
-//    const lenB = listBefore.length;
-//    addTask(tasks);
-//    const listAfter = window.document.getElementsByTagName("li");
-//    const lenA = listAfter.length;
-
-//    expect(lenA).toBe(lenB + 1);
-//  });
-
-//  test("remove the li element from the ul", () => {
-//    const listBefore = window.document.getElementsByTagName("li");
-//    const lenB = listBefore.length;
-//    removeTask("div2", tasks);
-//    const listAfter = window.document.getElementsByTagName("li");
-//    const lenA = listAfter.length;
-
-//    expect(lenB - 1).toBe(lenA);
-//  });
-//});
+module.exports = { displayTasks, update, tasks };

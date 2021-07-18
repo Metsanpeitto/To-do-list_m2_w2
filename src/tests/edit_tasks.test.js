@@ -1,12 +1,9 @@
+/**      A function for testing inputs and drag and drop events       */
 import { fireEvent, getByText } from "@testing-library/dom";
 import "@testing-library/jest-dom/extend-expect";
 import "regenerator-runtime/runtime";
 import { displayTasks, update } from "./test_files/index";
 import { drag, drop } from "./test_files/drag_drop";
-
-const fs = require("fs");
-var jsdom = require("jsdom");
-const { JSDOM } = jsdom;
 
 displayTasks();
 
@@ -55,6 +52,7 @@ describe("Functions for testing drag and drop events", () => {
   test("drags and drops the element 1 position up (index - 1) ", async () => {
     const oldIndex = li.id;
     const divIdOld = li.getElementsByTagName("div")[0].id;
+
     if (li.previousSibling) {
       console.log(li.getElementsByTagName("div")[0].id);
       console.log(li.previousSibling.getElementsByTagName("div")[0].id);

@@ -10,7 +10,7 @@
     ]
   },
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest --coverage --watchAll",
     "start": "webpack serve --open",
     "server": "node server.js",
     "build": "webpack",
@@ -28,6 +28,8 @@
   },
   "homepage": "https://github.com/Metsanpeitto/webpack_m2-w2",
   "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/eslint-parser": "^7.14.7",
     "@babel/plugin-transform-modules-commonjs": "^7.14.5",
     "@testing-library/jest-dom": "^5.14.1",
     "babel-eslint": "^10.1.0",
@@ -44,7 +46,7 @@
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
     "stylelint-csstree-validator": "^1.9.0",
-    "stylelint-scss": "^3.19.0",
+    "stylelint-scss": "^3.20.0",
     "webpack": "^5.45.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-middleware": "^5.0.0",
@@ -54,7 +56,6 @@
     "webpack-nano": "^1.1.1"
   },
   "dependencies": {
-    "@babel/core": "^7.14.6",
     "@babel/preset-env": "^7.14.7",
     "@jest/globals": "^27.0.6",
     "babel-jest": "^27.0.6",
