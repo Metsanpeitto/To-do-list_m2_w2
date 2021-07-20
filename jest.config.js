@@ -6,6 +6,5 @@ module.exports = {
   transform: {
     "^.+\\.jsx?$": "babel-jest",
   },
-  //setupFiles: ["./src/test/add_remove_li.test.js"],
   setupFilesAfterEnv: ["<rootDir>/jest-setup.js"],
 };

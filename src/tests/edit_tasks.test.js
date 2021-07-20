@@ -52,11 +52,6 @@ describe("Functions for testing drag and drop events", () => {
   test("drags and drops the element 1 position up (index - 1) ", async () => {
     const oldIndex = li.id;
     const divIdOld = li.getElementsByTagName("div")[0].id;
-
-    if (li.previousSibling) {
-      console.log(li.getElementsByTagName("div")[0].id);
-      console.log(li.previousSibling.getElementsByTagName("div")[0].id);
-    }
     drag();
     let newIndex;
 
@@ -69,10 +64,6 @@ describe("Functions for testing drag and drop events", () => {
     drop(oldIndex, newIndex);
     setTimeout(500, () => {
       const divIdNew = li.getElementsByTagName("div")[0].id;
-      if (li.previousSibling) {
-        console.log(li.getElementsByTagName("div")[0].id);
-        console.log(li.previousSibling.getElementsByTagName("div")[0].id);
-      }
       expect(divIdOld).not.toBe(divIdNew);
     });
   });
