@@ -9,13 +9,5 @@ module.exports = {
     "no-shadow": "off",
     "no-param-reassign": "off",
     "eol-last": "off",
-    "import/extensions": [
-      1,
-      {
-        js: "always",
-        json: "always",
-      },
-    ],
-    "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
   },
 };
