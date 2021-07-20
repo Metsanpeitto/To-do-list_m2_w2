@@ -47,6 +47,36 @@ function removeTask(data, tasks) {
   global.update(newTasks);
 }
 
+function editTask(divId, tasks) {
+  const list = document.getElementsByClassName("drag-div");
+  Array.from(list).forEach((li) => {
+    if (li.id === divId) {
+      li.style.backgroundColor = "#fff59c78";
+      const img = li.getElementsByTagName("img")[0];
+      img.src = "./";
+      img.style.cursor = "pointer";
+      img.addEventListener("click", () => {
+        removeTask(divId, tasks);
+      });
+    } else {
+      li.style.backgroundColor = "white";
+      const img = li.getElementsByTagName("img")[0];
+      img.src = "./";
+      img.style.cursor = "all-scroll";
+    }
+  });
+}
+
+function clear(tasks) {
+  const temp = [];
+  tasks.forEach((task) => {
+    if (task.completed !== true) {
+      temp.push(task);
+    }
+  });
+  window.update(temp);
+}
+
 /**   This is the module export required by Jest test      */
 
-module.exports = { addTask, removeTask };
+module.exports = { addTask, removeTask, editTask, clear };

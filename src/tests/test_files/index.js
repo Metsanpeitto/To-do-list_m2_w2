@@ -1,5 +1,7 @@
-import updateTasks from "./status";
-import { addTask, removeTask } from "./add_remove";
+import { updateTasks } from "./status";
+import { addTask, removeTask, editTask, clear } from "./add_remove";
+import { allowDrop, drag, drop } from "../../../src/drag_drop";
+
 import { storageMock } from "./storageMock";
 const fs = require("fs");
 var jsdom = require("jsdom");
@@ -13,19 +15,20 @@ window.localStorage = storageMock();
 window.sessionStorage = storageMock();
 /**    The code from index starts here       */
 let tasks = [
-  { id: 2, index: 2, description: "Do things", completed: true },
-  { id: 3, index: 3, description: "Do more things", completed: false },
+  { id: 0, index: 0, description: "Do things", completed: true },
+  { id: 1, index: 1, description: "Do more things", completed: false },
 ];
 
 /**       Saves and retrieves from local storage       */
 window.updateLocalStorage = function updateLocalStorage(retrieve) {
   if (retrieve === true) {
     if (tasks === null) {
-      tasks = JSON.parse(window.localStorage.getItem("tasks"));
+      // tasks = JSON.parse(window.localStorage.getItem("tasks"));
     }
   } else {
     window.localStorage.setItem("tasks", JSON.stringify(tasks));
   }
+
   window.displayTasks();
 };
 
@@ -156,28 +159,4 @@ window.displayTasks = function displayTasks() {
 window.updateLocalStorage(true);
 window.displayTasks();
 
-describe("Test task manager ->", () => {
-  test("add 1 li element to the ul", () => {
-    const input = window.document.getElementById("description");
-    input.value = "Do stuff";
-    const task = { id: 4, index: 4, description: "Do stuff", completed: true };
-
-    const listBefore = window.document.getElementsByTagName("li");
-    const lenB = listBefore.length;
-    addTask(tasks);
-    const listAfter = window.document.getElementsByTagName("li");
-    const lenA = listAfter.length;
-
-    expect(lenA).toBe(lenB + 1);
-  });
-
-  test("remove the li element from the ul", () => {
-    const listBefore = window.document.getElementsByTagName("li");
-    const lenB = listBefore.length;
-    removeTask("div2", tasks);
-    const listAfter = window.document.getElementsByTagName("li");
-    const lenA = listAfter.length;
-
-    expect(lenB - 1).toBe(lenA);
-  });
-});
+module.exports = { displayTasks, update, tasks };
