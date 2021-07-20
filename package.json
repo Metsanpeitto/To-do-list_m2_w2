@@ -10,7 +10,7 @@
     ]
   },
   "scripts": {
-    "test": "jest --coverage --watchAll",
+    "test": "jest --watchAll",
     "start": "webpack serve --open",
     "server": "node server.js",
     "build": "webpack",
@@ -46,7 +46,7 @@
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
     "stylelint-csstree-validator": "^1.9.0",
-    "stylelint-scss": "^3.20.0",
+    "stylelint-scss": "^3.20.1",
     "webpack": "^5.45.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-middleware": "^5.0.0",
@@ -60,12 +60,11 @@
     "@jest/globals": "^27.0.6",
     "babel-jest": "^27.0.6",
     "babel-loader": "^8.2.2",
-    "canvas": "^2.8.0",
+    "bcrypt": "^5.0.1",
     "gh-pages": "^3.2.3",
     "jest": "^27.0.6",
     "jsdom": "^16.6.0",
     "lodash": "^4.17.21",
-    "regenerator-runtime": "^0.13.7",
     "style-loader": "^3.1.0"
   },
   "main": "server.js"
