@@ -58,7 +58,7 @@ npm install
 ### Usage
 
 ```cmd
-npm start
+npm test
 ```
 
 
