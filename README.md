@@ -69,7 +69,8 @@ If you are non a technical person you can download the zip file.
 - Once you are done decompressing, you can open the created folder.
 - In it you can double click on the index.html file and choose a browser to open it (For example google Chrome Browser).
 - Now you should be able to see the project.
-- Remember to use the mouse to navigate through the website. Also you can use the keys 'arrow up' and 'arrow down' of your keyboard
+- Remember to use the mouse to navigate through the website.
+ Also you can use the keys 'arrow up' and 'arrow down' of your keyboard
   to scroll up and down.
 
 
