@@ -1,4 +1,4 @@
-# To Do list: secure deploy
+# Testing To Do list: part 2
 
 ![Microverse](https://img.shields.io/badge/Microverse-blueviolet)
 
@@ -6,16 +6,20 @@
 
 ## Learning objectives
 
-- Deploy a secure website using OpenSSL.
+- Write units tests for a JavaScript app.
+
 
 ### Project requirements
-- Commit and push all your work into the project's GitHub repository.
-- If you worked with branches, make sure you merge all your work into the main branch.
-- Deploy your website using GitHub Pages (you are already familiar with this process), but this time pay attention to the extra step that will ensure that your app uses HTTPS protocol:
-- Scroll to the bottom of the Pages page and make sure the "Enforce HTTPS" checkbox is selected.
-- Confirm the deployment. Your application will be live in few minutes. On the top of the Pages page you will find your project's URL.
-- Make sure that your app URL uses SSL.
-- Update the README of your repository to include a link to the online version.
+- Create a test file(s) (`[..].test.js`) for a file(s) containing the following functions:
+    - a function for editing the task description.
+    - a function for updating an item's 'completed' status.
+    - a function for updating an item's index value upon drag/drop actions.
+    - the "Clear all completed" function.
+- Use the mock storage object you have created in Part 1 of this project to mock the *localStorage* updates.
+- Mock the HTML elements to test DOM manipulation functions.
+- Make sure you group your tests using the `description()` method.
+-  **You need to use pair-programming for this project. We will check to see if both partners submitted code by looking at the commit history for each project.  Therefore you need to select one of the repos in your pair-programming group in which you will implement the above features.**
+
 
 =======
 
@@ -54,7 +58,7 @@ npm install
 ### Usage
 
 ```cmd
-npm start
+npm test
 ```
 
 
