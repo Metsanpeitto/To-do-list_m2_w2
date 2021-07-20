@@ -9,7 +9,7 @@ function main() {
   let tasks = null;
 
   /**       Saves and retrieves from local storage       */
-  window.updateLocalStorage = function updateLocalStorage(retrieve) {
+  window.updateLocalStorage = updateLocalStorage = (retrieve) =>{
     if (retrieve === true) {
       if (tasks === null) {
         tasks = JSON.parse(window.localStorage.getItem("tasks"));
@@ -26,7 +26,7 @@ function main() {
   };
 
   /**       Handler for calling a task from and inline declared listener */
-  window.restart = function restart() {
+  window.restart = restart = () => {
     tasks = null;
     window.updateLocalStorage(false);
   };
@@ -44,7 +44,7 @@ function main() {
   };
 
   /**       Display tasks is used to show the Task collection      */
-  window.displayTasks = function displayTasks() {
+  window.displayTasks = displayTasks = () => {
     const container = document.getElementById("container");
     const list = document.createElement("ul");
     list.id = "list";
