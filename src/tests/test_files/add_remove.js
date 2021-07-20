@@ -1,4 +1,5 @@
-/* --- This file contains the functions required to add and remove tasks   */
+/* --- This file contains the functions required to test the add and  remove tasks
+*/
 
 function addTask(tasks) {
   const str = global.document.getElementById("description").value;

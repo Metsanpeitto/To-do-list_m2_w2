@@ -21,7 +21,7 @@
     "jest-dom/prefer-to-have-attribute": "error",
     "no-shadow": "off",
     "no-param-reassign": "off",
-    "eol-last": "off"   
+    "eol-last": "off" 
   },
   "ignorePatterns": ["dist/", "build/"]
 }
